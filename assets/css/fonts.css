@@ -1,0 +1,20 @@
+/* From: https://velvetyne.fr/fonts/gulax/ */
+@font-face {
+  font-family: "Gulax";
+  src: url("@/assets/fonts/gulax/Gulax-Regular.otf") format("opentype"),
+       url("@/assets/fonts/gulax/Gulax-Regular.woff2") format("woff2"),
+       url("@/assets/fonts/gulax/Gulax-Regular.woff") format("woff"),
+       url("@/assets/fonts/gulax/Gulax-Regular.eot") format("embedded-opentype");
+  font-weight: regular;
+}
+
+/* From: https://velvetyne.fr/fonts/format-1452/ */
+@font-face {
+  font-family: "Format 1452";
+  src: url("@/assets/fonts/format-1452/Format_1452.otf") format("opentype"),
+       url("@/assets/fonts/format-1452/Format_1452.woff2") format("woff2"),
+       url("@/assets/fonts/format-1452/Format_1452.woff") format("woff"),
+       url("@/assets/fonts/format-1452/Format_1452.eot") format("embedded-opentype");
+  font-weight: regular;
+  /* descent-override: 0%; */
+}
