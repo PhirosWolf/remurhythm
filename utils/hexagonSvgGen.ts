@@ -32,7 +32,6 @@ export function applyColorToHexagon (hex: Svg, color: HexagonColor) {
   } else {
     const gradient = hex.gradient(color?.type ?? 'linear', (add: SVGGradient) => {
       for (let stop of color.stops) {
-        console.log(stop);
         add.stop(stop.offset, stop.color);
       }
     });

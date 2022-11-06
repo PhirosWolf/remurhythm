@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import gsap from 'gsap';
+
+// TODO: move button styles to app.config.ts
+
 // Hexagonal button options (props)
 const playBtnProps = {
   foregroundColor: {
@@ -63,6 +67,14 @@ const secondaryBtnProps = {
   },
   hexagonScaling: 1.3
 };
+
+// Defines if the game is launched (& displayed) or not
+const launched = ref(false);
+
+function launch () {
+  launched.value = true;
+  // TODO: transition from homepage to player (+history push)
+}
 </script>
 
 <template>
@@ -83,7 +95,11 @@ const secondaryBtnProps = {
         </ButtonHexagon>
       </div>
       <div>
-        <ButtonHexagon v-bind="playBtnProps" class="h-60 w-60 drop-shadow-tower-5">
+        <ButtonHexagon
+          class="h-60 w-60 drop-shadow-tower"
+          v-bind="playBtnProps"
+          @click="launch"
+        >
         <span class="select-none text-5xl font-bold font-format1452">Launch!</span>
       </ButtonHexagon>
       </div>
@@ -96,6 +112,9 @@ const secondaryBtnProps = {
         </ButtonHexagon>
       </div>
     </nav>
+    <div v-if="launched">
+      <RemuRhythmPlayer />
+    </div>
   </div>
 </template>
 

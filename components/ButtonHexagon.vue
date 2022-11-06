@@ -9,10 +9,18 @@ interface Props {
   hexagonScaling?: number
 }
 
+interface Emits {
+  (e: 'mouseenter'): void
+  (e: 'mouseleave'): void
+  (e: 'click'): void
+}
+
 const props = withDefaults(defineProps<Props>(), {
   hexagonScaling: 1.5
 });
 const { backgroundColor, foregroundColor, hexagonScaling } = toRefs(props);
+
+const emit = defineEmits<Emits>();
 
 const container = ref(null); // div containing the hexagons
 const content = ref(null); // span containing the button's content
@@ -67,12 +75,17 @@ onMounted(() => {
   }, '<0.1')
   .to(content.value, {}, '<');
 
-  // Make the back hexagon listen to mouse enter/leave events in order to trigger animation
+  // Make the back hexagon listen to mouse enter/leave events in order to trigger animation and event emits
   backHexagonPolygon.node.addEventListener('mouseenter', () => {
     tl.play();
+    emit('mouseenter');
   });
   backHexagonPolygon.node.addEventListener('mouseleave', () => {
     tl.reverse();
+    emit('mouseleave');
+  });
+  backHexagonPolygon.node.addEventListener('click', () => {
+    emit('click');
   });
 
   // Appends the hexagonal SVGs to the container
@@ -83,7 +96,7 @@ onMounted(() => {
 
 <template>
   <div ref="container" class="relative">
-    <div ref="content" class="absolute block top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
+    <div ref="content" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none">
       <slot />
     </div>
   </div>
