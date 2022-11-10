@@ -1,21 +1,18 @@
 <script lang="ts" setup>
 import gsap from 'gsap';
-import { type HexagonColor, getHexagonSvg, applyColorToHexagon } from '@/utils/hexagonSvgGen';
-import { type Svg } from '@svgdotjs/svg.js';
-
-interface Props {
-  backgroundColor: HexagonColor
-  foregroundColor: HexagonColor
-  hexagonScaling?: number
-}
+import { getHexagonSvg, applyColorToHexagon } from '@/utils/hexagonSvgGen';
+import type { ButtonHexagonProps } from '@/utils/types/props';
+import type { Svg } from '@svgdotjs/svg.js';
 
 interface Emits {
-  (e: 'mouseenter'): void
-  (e: 'mouseleave'): void
-  (e: 'click'): void
+  (e: 'mouseenter'): void;
+  (e: 'mouseleave'): void;
+  (e: 'click'): void;
 }
 
-const props = withDefaults(defineProps<Props>(), {
+// I'm using vite-plugin-vue-type-imports to make it work.
+// See https://github.com/vuejs/core/issues/4294 for why it doesn't work without it
+const props = withDefaults(defineProps<ButtonHexagonProps>(), {
   hexagonScaling: 1.5
 });
 const { backgroundColor, foregroundColor, hexagonScaling } = toRefs(props);
