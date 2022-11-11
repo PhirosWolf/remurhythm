@@ -11,7 +11,7 @@ export interface Gradient {
 
 export type HexagonColor = string|Gradient;
 
-export function getHexagonSvg () {
+export function getHexagonSvg (): Svg {
   const svg = SVG()
     .size(100, 100)
     .viewbox(0, 0, 100, 100)

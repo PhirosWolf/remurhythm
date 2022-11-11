@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import gsap from 'gsap';
-import { getHexagonSvg, applyColorToHexagon } from '@/utils/hexagonSvgGen';
+import { getHexagonSvg, applyColorToHexagon } from '@/utils/genHexagonSvg';
 import type { ButtonHexagonProps } from '@/utils/types/props';
 import type { Svg } from '@svgdotjs/svg.js';
 
@@ -19,21 +19,14 @@ const { backgroundColor, foregroundColor, hexagonScaling } = toRefs(props);
 
 const emit = defineEmits<Emits>();
 
-const container = ref(null); // div containing the hexagons
-const content = ref(null); // span containing the button's content
-
-// Front and back hexagons
-let backHexagon: Svg = null;
-let frontHexagon: Svg = null;
-
-// GSAP timeline variable for the back and front hexagons
-let tl: GSAPTimeline = null;
+const container = ref<HTMLElement|null>(null); // div containing the hexagons
+const content = ref<HTMLElement|null>(null); // span containing the button's content
 
 onMounted(() => {
   // Generate the hexagonal SVGs
   // The hexagons must be generated on the client side otherwise it won't work
-  backHexagon = getHexagonSvg();
-  frontHexagon = getHexagonSvg();
+  const backHexagon = getHexagonSvg();
+  const frontHexagon = getHexagonSvg();
 
   // Color the hexagons with the color/gradient given by the props
   applyColorToHexagon(backHexagon, backgroundColor.value);
@@ -56,7 +49,7 @@ onMounted(() => {
   frontHexagonPolygon.addClass('hover:cursor-pointer');
 
   // Creates the GSAP timeline for the back and front hexagons
-  tl = gsap.timeline({
+  const tl = gsap.timeline({
     paused: true,
     defaults: {
       duration: 0.3,

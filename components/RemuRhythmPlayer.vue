@@ -29,7 +29,7 @@ const playerState: PlayerState = reactive({
       </div>
     </div>
     <div id="controls"><!-- Don't forget to add tempo and tempo oscillators --></div>
-    <div id="edit-tools"></div>
+    <div id="edit-tools"><!-- Instead of doing a repeating pattern, maybe create a visual interface with blocks having different functions to generate the rhythm (oscillators, randomizers, options to hide the player, ... a bit like in blender) --></div>
     <div id="presets">
       <!-- Normal 4/4 (default?), Waltz 3/4, 5/4, Duplets (3, 5 & more), polyrhythms -->
     </div>
